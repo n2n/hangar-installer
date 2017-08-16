@@ -1,10 +1,9 @@
 <?php
-namespace n2n\composer\skeleton;
+namespace n2n\composer\skeleton\component;
 
 use Composer\Plugin\PluginInterface;
 use Composer\IO\IOInterface;
 use Composer\Composer;
-use n2n\composer\module\ComponentInstaller;
 
 class ComponentPlugin implements PluginInterface {
 	
