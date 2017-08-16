@@ -10,7 +10,7 @@ class ComponentInstaller extends LibraryInstaller {
 	 * @see \Composer\Installer\InstallerInterface::supports()
 	 */
 	public function supports($packageType) {
-		return $packageType == self::N2N_MODULE_TYPE;
+		return $packageType == self::N2N_SKELETON_COMPONENT_TYPE;
 	}
 	
 	/**
@@ -48,9 +48,9 @@ class ComponentInstaller extends LibraryInstaller {
 		parent::uninstall($repo, $package);
 	}
 	
-	const N2N_MODULE_TYPE = 'n2n-module';
+	const N2N_SKELETON_COMPONENT_TYPE = 'n2n-skeleton-component';
 	const VAR_ORIG_DIR = 'src' . DIRECTORY_SEPARATOR . 'var';
-	const VAR_DEST_DIR = '..' . DIRECTORY_SEPARATOR . 'var';
+	const DEST_DIR = '..' . DIRECTORY_SEPARATOR . 'var';
 	const ETC_DIR = 'etc';
 	const PUBLIC_ORIG_DIR = 'src' . DIRECTORY_SEPARATOR . 'public';
 	const PUBLIC_DEST_DIR = '..' . DIRECTORY_SEPARATOR . 'public';
@@ -66,7 +66,7 @@ class ComponentInstaller extends LibraryInstaller {
 	}
 	
 	private function getVarDestDirPath() {
-		return $this->filesystem->normalizePath($this->vendorDir . DIRECTORY_SEPARATOR . self::VAR_DEST_DIR);
+		return $this->filesystem->normalizePath($this->vendorDir . DIRECTORY_SEPARATOR . self::DEST_DIR);
 	}
 	
 	private function getRelEtcDirPath(Package $package) {
@@ -165,7 +165,7 @@ class ComponentInstaller extends LibraryInstaller {
 		if (is_dir($origDirPath)) return;
 		
 		$dirName = pathinfo($origDirPath, PATHINFO_BASENAME);
-		throw new CorruptedN2nModuleException($package->getPrettyName() . ' has type \'' . self::N2N_MODULE_TYPE
+		throw new CorruptedN2nModuleException($package->getPrettyName() . ' has type \'' . self::N2N_SKELETON_COMPONENT_TYPE
 				. '\' but contains no ' . $dirName . ' directory: ' . $origDirPath);
 	}
 	
@@ -174,12 +174,12 @@ class ComponentInstaller extends LibraryInstaller {
 		
 		$dirName = pathinfo($destDirPath, PATHINFO_BASENAME);
 		
-		$question = $package->getPrettyName() . ' is an ' . self::N2N_MODULE_TYPE
+		$question = $package->getPrettyName() . ' is an ' . self::N2N_SKELETON_COMPONENT_TYPE
 		. ' and requires a ' . $dirName . ' directory (' . $destDirPath
 		. '). Do you want to skip the installation of the ' . $dirName . ' files? [y,n] (default: y): ';
 		if ($this->io->askConfirmation($question)) return false;
 		
-		throw new N2nModuleInstallationException('Failed to install ' . self::N2N_MODULE_TYPE . ' '
+		throw new N2nModuleInstallationException('Failed to install ' . self::N2N_SKELETON_COMPONENT_TYPE . ' '
 				. $package->getPrettyName() . '. Reason: ' . $dirName . ' directory missing: ' . $destDirPath);
 	}
 	
