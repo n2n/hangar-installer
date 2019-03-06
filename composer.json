@@ -1,32 +1,33 @@
 {
-	"name" : "n2n/n2n-composer-skeleton-component-installer",
-	"type" : "composer-plugin",
-	"description" : "n2n skeleton component installer plugin for composer",
-	"keywords" : [
-		"n2n",
-		"module",
-		"installer"
-	],
-	"homepage" : "http://n2n.rocks/",
-	"license" : "GNU LGPL",
-	"authors" : [{
-			"name" : "Thomas Günther",
-			"email" : "guenther@hnm.ch",
-			"homepage" : "https://www.hnm.ch/"
-		}
-	],
-	"require" : {
-		"composer-plugin-api" : "^1.0"
-	},
-	"require-dev" : {
-		"composer/composer" : "1.*"
-	},
-	"extra" : {
-		"class" : "n2n\\composer\\skeleton\\component\\ComponentPlugin"
-	},
-	"autoload" : {
-		"psr-4" : {
-			"n2n\\composer\\skeleton\\component\\" : "src/n2n/composer/skeleton/component"
-		}
-	}
+    "authors": [
+        {
+            "email": "guenther@hnm.ch",
+            "homepage": "https://www.hnm.ch/",
+            "name": "Thomas G\u00fcnther"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "n2n\\composer\\skeleton\\component\\": "src/n2n/composer/skeleton/component"
+        }
+    },
+    "description": "n2n skeleton component installer plugin for composer",
+    "extra": {
+        "class": "n2n\\composer\\skeleton\\component\\ComponentPlugin"
+    },
+    "homepage": "http://n2n.rocks/",
+    "keywords": [
+        "n2n",
+        "module",
+        "installer"
+    ],
+    "license": "GNU LGPL",
+    "name": "n2n/n2n-composer-skeleton-component-installer",
+    "require": {
+        "composer-plugin-api": "^1.0"
+    },
+    "require-dev": {
+        "composer/composer": "1.*"
+    },
+    "type": "composer-plugin"
 }
